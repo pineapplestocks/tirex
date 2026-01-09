@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tirex Richmond | Professional Tire & Auto Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #ffffff;
+            --cream: #faf9f7;
+            --gray-100: #f5f4f2;
+            --gray-200: #e8e6e3;
+            --gray-300: #d1cfc9;
+            --gray-500: #8a8780;
+            --gray-700: #4a4845;
+            --gray-900: #1a1918;
+            --accent: #e63312;
+            --accent-dark: #c42a0e;
+            --accent-light: #fff1ef;
+            --blue: #1a5fb4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            border-bottom-color: var(--gray-200);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: var(--white) !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--gray-900);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 8rem 5% 5rem;
+            background: var(--cream);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, var(--accent-light) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .hero-badge::before {
+            content: '📍';
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.1s forwards;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--gray-500);
+            max-width: 480px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.2s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.3s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.75rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(230,51,18,0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(230,51,18,0.35);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-900);
+            border: 2px solid var(--gray-200);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gray-300);
+            background: var(--gray-100);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .tire-showcase {
+            width: 400px;
+            height: 400px;
+            position: relative;
+        }
+
+        .tire-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid var(--gray-200);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .tire-ring:nth-child(1) {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .tire-ring:nth-child(2) {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0.5s;
+        }
+
+        .tire-ring:nth-child(3) {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+
+        .tire-center {
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(230,51,18,0.3);
+        }
+
+        .tire-center span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.8; }
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-200);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.5s forwards;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-top: 0.25rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 5%;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content .section-tag {
+            text-align: left;
+        }
+
+        .about-content h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
+        }
+
+        .about-content p {
+            color: var(--gray-500);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .about-content p:last-of-type {
+            margin-bottom: 2rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .about-brands {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .brand-card {
+            background: var(--cream);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+
+        .brand-card span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-700);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 7rem 5%;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .section-header p {
+            color: var(--gray-500);
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--gray-200);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-900);
+        }
+
+        .service-card p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 1.25rem;
+            transition: gap 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 0.75rem;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 7rem 5%;
+            background: var(--cream);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .why-content .section-tag {
+            text-align: left;
+        }
+
+        .why-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .why-content > p {
+            color: var(--gray-500);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: var(--white);
+            padding: 1.25rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .feature-text h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--gray-900);
+        }
+
+        .feature-text p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .why-visual {
+            position: relative;
+        }
+
+        .why-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--white) 100%);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gray-200);
+        }
+
+        .why-graphic {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .why-graphic .big-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 8rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            opacity: 0.15;
+        }
+
+        .why-graphic .text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            text-align: center;
+        }
+
+        .rating-badge {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .rating-text {
+            font-weight: 600;
+            color: var(--gray-900);
+            font-size: 0.9rem;
+        }
+
+        /* Brands Section */
+        .brands {
+            padding: 4rem 5%;
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .brands-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .brands-header p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+        }
+
+        .brands-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .brand-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gray-300);
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .brand-logo:hover {
+            color: var(--gray-700);
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 6rem 5%;
+            background: var(--cream);
+        }
+
+        .reviews-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .reviews .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .reviews-widget-placeholder {
+            background: var(--white);
+            border: 2px dashed var(--gray-300);
+            border-radius: 16px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .placeholder-content {
+            color: var(--gray-500);
+        }
+
+        .placeholder-stars {
+            font-size: 2.5rem;
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+        }
+
+        .placeholder-content p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .placeholder-content span {
+            font-size: 0.9rem;
+        }
+
+        .placeholder-content a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .placeholder-content a:hover {
+            text-decoration: underline;
+        }
+
+        .reviews-cta {
+            text-align: center;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 7rem 5%;
+            background: var(--cream);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .contact-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .contact-header p {
+            color: var(--gray-500);
+            font-size: 1.1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+        }
+
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 16px;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
+
+        .contact-text h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-text p, .contact-text a {
+            color: var(--gray-900);
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-text a:hover {
+            color: var(--accent);
+        }
+
+        .hours-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-top: 0.25rem;
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .hours-row span:first-child {
+            color: var(--gray-500);
+        }
+
+        .hours-row span:last-child {
+            color: var(--gray-900);
+            font-weight: 500;
+        }
+
+        .contact-form-wrapper {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+
+        .contact-form > p {
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--gray-700);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: var(--cream);
+            border: 1px solid var(--gray-200);
+            border-radius: 10px;
+            color: var(--gray-900);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            justify-content: center;
+            font-size: 1rem;
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            max-width: 280px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-col h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+            color: var(--white);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom p {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container,
+            .why-grid,
+            .contact-grid,
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .tire-showcase {
+                width: 280px;
+                height: 280px;
+            }
+
+            .why-visual {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                border-top: 1px solid var(--gray-200);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero {
+                padding-top: 6rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                gap: 2rem;
+                flex-wrap: wrap;
+            }
+
+            .brands-logos {
+                gap: 1.5rem;
+            }
+
+            .brand-logo {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">Tire<span>X</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="tel:8044471051" class="nav-cta">Call Now</a></li>
+        </ul>
+        <div class="mobile-toggle" id="mobileToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">Richmond, VA</div>
+                <h1>Quality Tires.<br><span>Honest Service.</span></h1>
+                <p>Your trusted neighborhood tire shop. From new tires to alignments and brakes, we keep Richmond rolling with expert care and fair prices.</p>
+                <div class="hero-buttons">
+                    <a href="tel:8044471051" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        (804) 447-1051
+                    </a>
+                    <a href="#services" class="btn btn-secondary">View Services</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Tire Brands</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="tire-showcase">
+                    <div class="tire-ring"></div>
+                    <div class="tire-ring"></div>
+                    <div class="tire-ring"></div>
+                    <div class="tire-center">
+                        <span>TX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <div class="section-tag">About Us</div>
+                <h2>Serving Richmond for Over 25 Years</h2>
+                <p>Tire X proudly serves the local Richmond, VA area and has been for over 25 years. We understand that buying new tires or getting your vehicle serviced can be overwhelming. Let us help you choose from our large selection of tires that fit your needs from top quality brands, such as Michelin®, BFGoodrich®, Uniroyal®, and more.</p>
+                <p>We provide personalized service at the right price. Let us earn your business.</p>
+                <a href="#contact" class="btn btn-primary">Schedule an Appointment</a>
+            </div>
+            <div class="about-brands">
+                <div class="brand-card">
+                    <span>Michelin®</span>
+                </div>
+                <div class="brand-card">
+                    <span>BFGoodrich®</span>
+                </div>
+                <div class="brand-card">
+                    <span>Uniroyal®</span>
+                </div>
+                <div class="brand-card">
+                    <span>& More</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="reviews-container">
+            <div class="section-header">
+                <div class="section-tag">Customer Reviews</div>
+                <h2>What Our Customers Say</h2>
+                <p>Don't just take our word for it — see what Richmond drivers are saying about us on Google.</p>
+            </div>
+            
+            <!-- Google Reviews Widget -->
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-02372385-3c4d-4597-adbe-d261ce8d3a37" data-elfsight-app-lazy></div>
+            <!-- END WIDGET AREA -->
+
+            <div class="reviews-cta">
+                <a href="https://g.page/r/YOUR-GOOGLE-PLACE-ID/review" target="_blank" class="btn btn-secondary">Leave Us a Review on Google</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <div class="section-tag">Our Services</div>
+            <h2>Everything Your Car Needs</h2>
+            <p>From tire sales to full mechanical services, we've got you covered with expert technicians and honest pricing.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🛞</div>
+                <h3>New & Used Tires</h3>
+                <p>Wide selection of top-brand tires for cars, trucks, and SUVs. Competitive prices on new and quality used options.</p>
+                <a href="tel:8044471051" class="service-link">Get a Quote →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Wheel Alignment</h3>
+                <p>Precision computerized alignment to extend tire life, improve fuel economy, and keep you driving straight.</p>
+                <a href="tel:8044471051" class="service-link">Schedule Now →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Brake Service</h3>
+                <p>Complete brake inspection, repair, and replacement. Pads, rotors, calipers — keeping you safe on the road.</p>
+                <a href="tel:8044471051" class="service-link">Book Service →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔩</div>
+                <h3>Tire Repair</h3>
+                <p>Fast, reliable tire repairs. Punctures, slow leaks, and valve stems fixed quickly to get you back on the road.</p>
+                <a href="tel:8044471051" class="service-link">Get Help →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>TPMS Service</h3>
+                <p>Tire Pressure Monitoring System diagnostics, sensor replacement, and programming.</p>
+                <a href="tel:8044471051" class="service-link">Learn More →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔄</div>
+                <h3>Tire Rotation</h3>
+                <p>Regular rotation for even tire wear, extending tire life and maintaining optimal performance.</p>
+                <a href="tel:8044471051" class="service-link">Schedule →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us" id="why-us">
+        <div class="why-grid">
+            <div class="why-content">
+                <div class="section-tag">Why Choose Us</div>
+                <h2>Trusted by Richmond Drivers</h2>
+                <p>We're your neighbors, committed to keeping Richmond rolling with honest service and expert care.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h4>Honest, Transparent Pricing</h4>
+                            <p>No hidden fees or surprise charges. What we quote is what you pay.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h4>Expert Technicians</h4>
+                            <p>Trained professionals with years of hands-on experience.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h4>Fast Turnaround</h4>
+                            <p>Most services completed same-day. No long waits.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h4>Quality Guarantee</h4>
+                            <p>We stand behind every tire and service we provide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="why-visual">
+                <div class="why-image">
+                    <div class="why-graphic">
+                        <span class="big-number">25+</span>
+                        <span class="text">Years Serving<br>Richmond</span>
+                    </div>
+                </div>
+                <div class="rating-badge">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">5-Star Google Reviews</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands" id="brands">
+        <div class="brands-header">
+            <p>Trusted Tire Brands We Carry</p>
+        </div>
+        <div class="brands-logos">
+            <span class="brand-logo">MICHELIN</span>
+            <span class="brand-logo">GOODYEAR</span>
+            <span class="brand-logo">BRIDGESTONE</span>
+            <span class="brand-logo">CONTINENTAL</span>
+            <span class="brand-logo">PIRELLI</span>
+            <span class="brand-logo">BF GOODRICH</span>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-header">
+                <div class="section-tag">Get In Touch</div>
+                <h2>Visit Our Shop</h2>
+                <p>Stop by or give us a call — we're here to help with all your tire and auto needs.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h4>Location</h4>
+                            <p>5820 Jefferson Davis Hwy<br>Richmond, VA 23234</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <a href="tel:8044471051">(804) 447-1051</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🕐</div>
+                        <div class="contact-text">
+                            <h4>Business Hours</h4>
+                            <div class="hours-list">
+                                <div class="hours-row">
+                                    <span>Mon - Fri</span>
+                                    <span>8:00 AM - 6:00 PM</span>
+                                </div>
+                                <div class="hours-row">
+                                    <span>Saturday</span>
+                                    <span>8:00 AM - 4:00 PM</span>
+                                </div>
+                                <div class="hours-row">
+                                    <span>Sunday</span>
+                                    <span>Closed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form">
+                        <h3>Request a Quote</h3>
+                        <p>Fill out the form and we'll get back to you ASAP.</p>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" placeholder="(804) 000-0000">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Service Needed</label>
+                            <select>
+                                <option value="">Select a service...</option>
+                                <option>New Tires</option>
+                                <option>Used Tires</option>
+                                <option>Wheel Alignment</option>
+                                <option>Brake Service</option>
+                                <option>Tire Repair</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Vehicle Info</label>
+                            <input type="text" placeholder="Year, Make, Model">
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea placeholder="Tell us what you need..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">Tire<span>X</span></a>
+                <p>Richmond's trusted tire and auto service experts. Quality tires, honest service, fair prices.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">New Tires</a></li>
+                        <li><a href="#services">Used Tires</a></li>
+                        <li><a href="#services">Wheel Alignment</a></li>
+                        <li><a href="#services">Brake Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="tel:8044471051">(804) 447-1051</a></li>
+                        <li><a href="#contact">Get Directions</a></li>
+                        <li><a href="#contact">Request Quote</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Tirex Richmond. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thanks for your request! We\'ll be in touch soon.');
+        });
+    </script>
+</body>
+</html>
